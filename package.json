@@ -12,22 +12,22 @@
     "node": ">=10.16"
   },
   "scripts": {
-    "build": "lb-tsc",
+    "build": "lb-tsc --copy-resources",
     "build:watch": "lb-tsc --watch",
-    "lint": "npm run prettier:check && npm run eslint",
-    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
+    "lint": "yarn run prettier:check && yarn run eslint",
+    "lint:fix": "yarn run eslint:fix && yarn run prettier:fix",
     "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
-    "prettier:check": "npm run prettier:cli -- -l",
-    "prettier:fix": "npm run prettier:cli -- --write",
+    "prettier:check": "yarn run prettier:cli -- -l",
+    "prettier:fix": "yarn run prettier:cli -- --write",
     "eslint": "lb-eslint --report-unused-disable-directives .",
-    "eslint:fix": "npm run eslint -- --fix",
-    "pretest": "npm run clean && npm run build",
-    "posttest": "npm run lint",
+    "eslint:fix": "yarn run eslint -- --fix",
+    "pretest": "yarn run clean && yarn run build",
+    "posttest": "yarn run lint",
     "docker:build": "docker build -t e-commerce-api .",
     "docker:run": "docker run -p 3000:3000 -d e-commerce-api",
     "migrate": "node ./dist/migrate",
     "openapi-spec": "node ./dist/openapi-spec",
-    "prestart": "npm run build",
+    "prestart": "yarn run build",
     "start": "node -r source-map-support/register .",
     "clean": "lb-clean dist *.tsbuildinfo .eslintcache"
   },
@@ -50,15 +50,16 @@
     "@loopback/rest": "^5.2.0",
     "@loopback/rest-explorer": "^2.2.6",
     "@loopback/service-proxy": "^2.3.4",
+    "loopback-connector-mongodb": "^6.2.0",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@loopback/build": "^6.1.0",
-    "source-map-support": "^0.5.19",
+    "@loopback/eslint-config": "^8.0.3",
     "@loopback/testlab": "^3.2.0",
     "@types/node": "^10.17.26",
-    "@loopback/eslint-config": "^8.0.3",
     "eslint": "^7.3.1",
-    "typescript": "~3.9.5"
+    "source-map-support": "^0.5.19",
+    "typescript": "^4.6.3"
   }
 }

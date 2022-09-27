@@ -39,7 +39,8 @@ export class MySequence implements SequenceHandler {
       const result = await this.invoke(route, args);
       this.send(response, result);
     } catch (err) {
-      this.reject(context, err);
+      const error = err as Error;
+      this.reject(context, error);
     }
   }
 }
