@@ -18,14 +18,14 @@ const PING_RESPONSE: ResponseObject = {
           headers: {
             type: 'object',
             properties: {
-              'Content-Type': {type: 'string'},
+              'Content-Type': {type: 'string'}
             },
-            additionalProperties: true,
-          },
-        },
-      },
-    },
-  },
+            additionalProperties: true
+          }
+        }
+      }
+    }
+  }
 };
 
 /**
@@ -37,8 +37,8 @@ export class PingController {
   // Map to `GET /ping`
   @get('/ping', {
     responses: {
-      '200': PING_RESPONSE,
-    },
+      '200': PING_RESPONSE
+    }
   })
   ping(): object {
     // Reply with a greeting, the current time, the url, and request headers
@@ -46,7 +46,7 @@ export class PingController {
       greeting: 'Hello from LoopBack',
       date: new Date(),
       url: this.req.url,
-      headers: Object.assign({}, this.req.headers),
+      headers: Object.assign({}, this.req.headers)
     };
   }
 }

@@ -8,7 +8,7 @@ import {
   RequestContext,
   RestBindings,
   Send,
-  SequenceHandler,
+  SequenceHandler
 } from '@loopback/rest';
 
 const SequenceActions = RestBindings.SequenceActions;
@@ -26,14 +26,16 @@ export class MySequence implements SequenceHandler {
     @inject(SequenceActions.PARSE_PARAMS) protected parseParams: ParseParams,
     @inject(SequenceActions.INVOKE_METHOD) protected invoke: InvokeMethod,
     @inject(SequenceActions.SEND) public send: Send,
-    @inject(SequenceActions.REJECT) public reject: Reject,
+    @inject(SequenceActions.REJECT) public reject: Reject
   ) {}
 
   async handle(context: RequestContext) {
     try {
       const {request, response} = context;
       const finished = await this.invokeMiddleware(context);
-      if (finished) return;
+      if (finished) {
+        return;
+      }
       const route = this.findRoute(request);
       const args = await this.parseParams(request, route);
       const result = await this.invoke(route, args);

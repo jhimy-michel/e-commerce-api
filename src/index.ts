@@ -28,9 +28,9 @@ if (require.main === module) {
       gracePeriodForClose: 5000, // 5 seconds
       openApiSpec: {
         // useful when used with OpenAPI-to-GraphQL to locate your application
-        setServersFromRequest: true,
-      },
-    },
+        setServersFromRequest: true
+      }
+    }
   };
   main(config).catch(err => {
     console.error('Cannot start the application.', err);
