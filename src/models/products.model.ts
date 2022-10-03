@@ -9,6 +9,15 @@ export class Products extends Entity {
   })
   _id?: string;
 
+  // name
+  // description
+  // cost
+  // inventoryId
+  // discountId
+  // categoryId
+  // createdOn
+  // updatedOn
+
   constructor(data?: Partial<Products>) {
     super(data);
   }

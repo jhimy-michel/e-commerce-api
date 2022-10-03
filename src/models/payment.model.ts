@@ -1,7 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
 
 @model()
-export class Category extends Entity {
+export class Payment extends Entity {
   @property({
     type: 'string',
     id: true,
@@ -9,17 +9,13 @@ export class Category extends Entity {
   })
   _id?: string;
 
-  // name
-  // createdOn
-  // updatedOn
-
-  constructor(data?: Partial<Category>) {
+  constructor(data?: Partial<Payment>) {
     super(data);
   }
 }
 
-export interface CategoryRelations {
+export interface PaymentRelations {
   // describe navigational properties here
 }
 
-export type CategoryWithRelations = Category & CategoryRelations;
+export type PaymentWithRelations = Payment & PaymentRelations;

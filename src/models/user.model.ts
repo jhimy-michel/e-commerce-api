@@ -9,6 +9,14 @@ export class User extends Entity {
   })
   _id?: string;
 
+  // email
+  // password
+  // FirstName
+  // Last Name
+  // Address
+  // lastLoginDate
+  // createdOn
+
   // Define well-known properties here
 
   // Indexer property to allow additional data
