@@ -1,14 +1,15 @@
 import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
+require('dotenv').config();
 
-const dbUser = 'jmichel';
-const dbPassword = 'aYgPvjIrIyTTQEBm';
+const dbUser = process.env.DB_USER;
+const dbPassword = process.env.DB_PASSWORD;
 const dataBase = 'e-commerce';
 
 const config = {
   name: 'mongo',
   connector: 'mongodb',
-  url: `mongodb+srv://jmchel:aYgPvjIrIyTTQEBm@jmichel.20qdtdc.mongodb.net/e-commerce?retryWrites=true&w=majority`,
+  url: `mongodb+srv://${dbUser}:${dbPassword}@jmichel.20qdtdc.mongodb.net/${dataBase}?retryWrites=true&w=majority`,
   host: '',
   port: 0,
   user: '',
