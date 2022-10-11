@@ -561,6 +561,14 @@
     type-is "^1.6.18"
     validator "^13.1.1"
 
+"@loopback/security@^0.8.3":
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/@loopback/security/-/security-0.8.3.tgz#b71377f2cf0463d594eab4cd9c6c567b6e9abf36"
+  integrity sha512-VM/ATijjcljqDijI7SKzvMEdgVTx956f+da/DCblq9Z3QVOPWTVyApsjW7Fh22zPd54/usmdzebpxYYorm/BZA==
+  dependencies:
+    debug "^4.3.4"
+    tslib "^2.4.0"
+
 "@loopback/service-proxy@^2.3.4", "@loopback/service-proxy@^2.3.8":
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/@loopback/service-proxy/-/service-proxy-2.3.8.tgz#e4bb28db43ff70f1507bf1550c1f7d3806d9e792"
@@ -4185,7 +4193,7 @@ tslib@^1.8.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.1:
+tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.1, tslib@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==

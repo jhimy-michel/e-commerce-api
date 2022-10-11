@@ -50,6 +50,7 @@
     "@loopback/repository": "^2.9.0",
     "@loopback/rest": "^5.2.0",
     "@loopback/rest-explorer": "^2.2.6",
+    "@loopback/security": "^0.8.3",
     "@loopback/service-proxy": "^2.3.4",
     "dotenv": "^16.0.3",
     "loopback-connector-mongodb": "^6.2.0",
