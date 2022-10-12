@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {Count, CountSchema, Filter, FilterExcludingWhere, repository, Where} from '@loopback/repository';
 import {post, param, get, getModelSchemaRef, patch, put, del, requestBody} from '@loopback/rest';
 import {Inventory} from '../models';
@@ -9,6 +10,7 @@ export class InventoryController {
     public inventoryRepository: InventoryRepository
   ) {}
 
+  @authenticate('jwt')
   @post('/inventories', {
     responses: {
       '200': {

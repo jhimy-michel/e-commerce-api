@@ -29,6 +29,7 @@
     "openapi-spec": "node ./dist/openapi-spec",
     "prestart": "yarn run build",
     "start": "node -r source-map-support/register .",
+    "dev": "nodemon -r source-map-support/register .",
     "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
     "prepare": "husky install"
   },
@@ -44,6 +45,8 @@
     "!*/__tests__"
   ],
   "dependencies": {
+    "@loopback/authentication": "^9.0.3",
+    "@loopback/authorization": "^0.12.3",
     "@loopback/boot": "^2.3.5",
     "@loopback/core": "^2.9.1",
     "@loopback/openapi-v3": "^3.4.5",
@@ -52,7 +55,9 @@
     "@loopback/rest-explorer": "^2.2.6",
     "@loopback/security": "^0.8.3",
     "@loopback/service-proxy": "^2.3.4",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.3",
+    "jsonwebtoken": "^8.5.1",
     "loopback-connector-mongodb": "^6.2.0",
     "tslib": "^2.0.0"
   },
@@ -60,6 +65,8 @@
     "@loopback/build": "^6.1.0",
     "@loopback/eslint-config": "^8.0.3",
     "@loopback/testlab": "^3.2.0",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^10.17.26",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
@@ -69,6 +76,7 @@
     "eslint-plugin-mocha": "^7.0.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.0.3",
+    "nodemon": "^2.0.20",
     "prettier": "^2.0.5",
     "source-map-support": "^0.5.19",
     "typescript": "^4.8.4"
