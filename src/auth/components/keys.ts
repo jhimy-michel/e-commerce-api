@@ -5,7 +5,6 @@ import {AuthService, JwtService} from '../index';
 export namespace TokenServiceConstants {
   export const TOKEN_SECRET_VALUE = `${process.env.TOKEN_SECRET}`;
   export const TOKEN_EXPIRES_IN_VALUE = '1d';
-  //export const TOKEN_REFRESH_SECRET_VALUE = !config ? '' : `${config.ADMIN_REFRESH_JWT_SECRET}`;
 }
 
 export namespace TokenServiceBindings {

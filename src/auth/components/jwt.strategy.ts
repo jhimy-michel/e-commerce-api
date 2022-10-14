@@ -1,6 +1,6 @@
 import {AuthenticationStrategy} from '@loopback/authentication';
 import {inject} from '@loopback/core';
-import {HttpErrors, Request} from '@loopback/rest';
+import {Request} from '@loopback/rest';
 import jwt from 'jsonwebtoken';
 import {CustomProfile} from '../../models/auth/user-profile.model';
 import {JwtService} from '../jwt.service';
@@ -64,9 +64,8 @@ export class JWTAuthenticationStrategy implements AuthenticationStrategy {
 
       return token;
     } catch (err) {
-      const error = err as Error;
-      console.error(error.message);
-      throw new InvalidAuthToken(error.message);
+      console.error(err.message);
+      throw new InvalidAuthToken(err.message);
     }
   }
 }

@@ -1,6 +1,6 @@
 import {bind, BindingScope} from '@loopback/core';
 import {repository} from '@loopback/repository';
-import bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcryptjs';
 import {User} from '../models';
 import {CustomProfile} from '../models/auth/user-profile.model';
 import {UserRepository} from '../repositories';

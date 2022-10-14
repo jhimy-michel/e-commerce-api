@@ -6,6 +6,8 @@ import {TokenServiceBindings} from '../auth/components/keys';
 import {CustomProfile} from '../models/auth/user-profile.model';
 import {UserRepository} from '../repositories';
 
+export const REFRESH_TOKEN_EXPIRES_IN_VALUE = '1w';
+
 export type LoginTokenResponse = {
   token: string;
 };
@@ -14,8 +16,6 @@ export class JwtService {
   constructor(
     @inject(TokenServiceBindings.TOKEN_SECRET) // injecting Token secret
     private jwtSecret: string,
-    /* @inject(TokenServiceBindings.TOKEN_REFRESH_SECRET) // injecting refresh token secret
-    private jwtRefreshSecret: string, */
     @inject(TokenServiceBindings.TOKEN_EXPIRES_IN) // injecting refresh token secret
     private expirationToken: string,
     @repository(UserRepository)

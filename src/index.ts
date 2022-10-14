@@ -1,9 +1,9 @@
-import {ApplicationConfig, ECommerceApiApplication} from './application';
+import {ApplicationConfig, EcommerceServiceApplication} from './application';
 
 export * from './application';
 
 export async function main(options: ApplicationConfig = {}) {
-  const app = new ECommerceApiApplication(options);
+  const app = new EcommerceServiceApplication(options);
   await app.boot();
   await app.start();
 
@@ -28,7 +28,9 @@ if (require.main === module) {
       gracePeriodForClose: 5000, // 5 seconds
       openApiSpec: {
         // useful when used with OpenAPI-to-GraphQL to locate your application
-        setServersFromRequest: true
+        setServersFromRequest: true,
+        // disables /openapi.json
+        disabled: true
       }
     }
   };

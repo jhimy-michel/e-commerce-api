@@ -1,14 +1,13 @@
 # Developer's Guide
 
-We use Visual Studio Code for developing LoopBack and recommend the same to our
-users.
+We use Visual Studio Code for developing.
 
 ## VSCode setup
 
 Install the following extensions:
 
- - [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
- - [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 ## Development workflow
 
