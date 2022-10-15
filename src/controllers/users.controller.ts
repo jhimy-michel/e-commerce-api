@@ -1,8 +1,18 @@
 import {Count, CountSchema, Filter, FilterExcludingWhere, repository, Where} from '@loopback/repository';
-import {post, param, get, getModelSchemaRef, patch, put, del, requestBody} from '@loopback/rest';
+import {post, param, get, getModelSchemaRef, patch, put, del, requestBody, HttpErrors} from '@loopback/rest';
+
 import {User} from '../models';
 import {UserRepository} from '../repositories';
 
+import passwordValidator from 'password-validator';
+import bcrypt from 'bcrypt';
+
+export type UserReq = {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+};
 export class UsersController {
   constructor(
     @repository(UserRepository)
@@ -17,20 +27,53 @@ export class UsersController {
       }
     }
   })
-  async create(
+  async createUser(
     @requestBody({
       content: {
         'application/json': {
           schema: getModelSchemaRef(User, {
             title: 'NewUser',
-            exclude: ['_id']
+            exclude: ['_id', 'createdOn', 'lastLoginDate']
           })
         }
       }
     })
-    user: Omit<User, '_id'>
-  ): Promise<User> {
-    return this.userRepository.create(user);
+    user: UserReq
+  ): Promise<UserReq> {
+    const userExist = await this.userRepository.findOne({where: {email: user.email}});
+
+    if (userExist) {
+      throw new HttpErrors[422]('User email was already registered');
+    }
+
+    const password = user.password;
+    const schema = new passwordValidator();
+    schema
+      .is()
+      .min(8) // Minimum length 8
+      .is()
+      .max(100) // Maximum length 100
+      .has()
+      .uppercase() // Must have uppercase letters
+      .has()
+      .lowercase() // Must have lowercase letters
+      .has()
+      .digits(2) // Must have at least 2 digits
+      .has()
+      .not()
+      .spaces() // Should not have spaces
+      .is()
+      .not()
+      .oneOf(['Passw0rd', 'Password123']);
+
+    if (!schema.validate(password)) {
+      throw new HttpErrors[422]('Password is too weak');
+    }
+
+    const hashPassword = await bcrypt.hash(password, 10);
+
+    const userData = await this.userRepository.create({...user, password: hashPassword});
+    return userData;
   }
 
   @get('/users/count', {
@@ -41,7 +84,7 @@ export class UsersController {
       }
     }
   })
-  async count(@param.where(User) where?: Where<User>): Promise<Count> {
+  async countUsers(@param.where(User) where?: Where<User>): Promise<Count> {
     return this.userRepository.count(where);
   }
 
@@ -60,7 +103,7 @@ export class UsersController {
       }
     }
   })
-  async find(@param.filter(User) filter?: Filter<User>): Promise<User[]> {
+  async listUsers(@param.filter(User) filter?: Filter<User>): Promise<User[]> {
     return this.userRepository.find(filter);
   }
 
