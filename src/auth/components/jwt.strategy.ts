@@ -64,8 +64,9 @@ export class JWTAuthenticationStrategy implements AuthenticationStrategy {
 
       return token;
     } catch (err) {
-      console.error(err.message);
-      throw new InvalidAuthToken(err.message);
+      const error = err as Error;
+      console.error(error.message);
+      throw new InvalidAuthToken(error.message);
     }
   }
 }

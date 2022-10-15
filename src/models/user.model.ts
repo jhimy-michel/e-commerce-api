@@ -9,15 +9,37 @@ export class User extends Entity {
   })
   _id?: string;
 
-  // email
-  // password
-  // FirstName
-  // Last Name
-  // Address
-  // lastLoginDate
-  // createdOn
+  @property({
+    type: 'string'
+  })
+  email: string;
 
-  // Define well-known properties here
+  @property({
+    type: 'string',
+    hidden: true
+  })
+  password: string;
+
+  @property({
+    type: 'string'
+  })
+  firstName: string;
+
+  @property({
+    type: 'string'
+  })
+  lastName: string;
+
+  @property({
+    type: 'date',
+    default: () => new Date()
+  })
+  createdOn: string;
+
+  @property({
+    type: 'date'
+  })
+  lastLoginDate: Date;
 
   // Indexer property to allow additional data
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

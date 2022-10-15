@@ -7,6 +7,7 @@ import {
 import {inject} from '@loopback/context';
 import {
   FindRoute,
+  HttpErrors,
   InvokeMethod,
   InvokeMiddleware,
   ParseParams,
@@ -48,7 +49,9 @@ export class MyAuthenticationSequence implements SequenceHandler {
       const {request, response} = context;
 
       const finished = await this.invokeMiddleware(context);
-      if (finished) {return;}
+      if (finished) {
+        return;
+      }
       const route = this.findRoute(request);
 
       // adding authentication to the request
@@ -60,7 +63,7 @@ export class MyAuthenticationSequence implements SequenceHandler {
       const result = await this.invoke(route, args);
       this.send(response, result);
     } catch (err) {
-      const error = err as Error;
+      const error = err as HttpErrors.HttpError;
       console.error(err);
       //
       // The authentication action utilizes a strategy resolver to find
@@ -83,7 +86,7 @@ export class MyAuthenticationSequence implements SequenceHandler {
       // an extension point allowing `@loopback/authentication` to contribute
       // mappings from error codes to HTTP status codes, so that application
       // don't have to map codes themselves.
-      if (err.code === AUTHENTICATION_STRATEGY_NOT_FOUND || err.code === USER_PROFILE_NOT_FOUND) {
+      if (error.code === AUTHENTICATION_STRATEGY_NOT_FOUND || error.code === USER_PROFILE_NOT_FOUND) {
         Object.assign(error, {statusCode: 401 /* Unauthorized */});
       }
 

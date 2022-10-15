@@ -49,10 +49,11 @@ export class AuthService {
       throw new AuthProblemInvalidCredentials();
     }
 
+    const date = new Date();
     // resets loginAttemps counter
     await this.userRepository.updateById(foundUser._id, {
       loginAttemps: 0,
-      lastLoginDate: Date.now()
+      lastLoginDate: date
     });
 
     return foundUser;
@@ -74,7 +75,7 @@ export class AuthService {
       if (isPastOneMinute) {
         await this.userRepository.updateById(user?._id, {
           loginAttemps: 0,
-          lastLoginDate: new Date().toISOString()
+          lastLoginDate: new Date()
         });
       }
     }

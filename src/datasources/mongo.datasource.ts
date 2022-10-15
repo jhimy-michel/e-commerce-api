@@ -24,7 +24,7 @@ const config = {
 // Learn more at https://loopback.io/doc/en/lb4/Life-cycle.html
 @lifeCycleObserver('datasource')
 export class MongoDataSource extends juggler.DataSource implements LifeCycleObserver {
-  static dataSourceName = 'db';
+  static dataSourceName = 'mongo';
   static readonly defaultConfig = config;
 
   constructor(
