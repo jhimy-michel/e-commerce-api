@@ -35,6 +35,7 @@ export class InventoryController {
     return this.inventoryRepository.create(inventory);
   }
 
+  @authenticate('jwt')
   @get('/inventories/count', {
     responses: {
       '200': {
@@ -47,6 +48,7 @@ export class InventoryController {
     return this.inventoryRepository.count(where);
   }
 
+  @authenticate('jwt')
   @get('/inventories', {
     responses: {
       '200': {
@@ -66,6 +68,7 @@ export class InventoryController {
     return this.inventoryRepository.find(filter);
   }
 
+  @authenticate('jwt')
   @patch('/inventories', {
     responses: {
       '200': {
@@ -88,6 +91,7 @@ export class InventoryController {
     return this.inventoryRepository.updateAll(inventory, where);
   }
 
+  @authenticate('jwt')
   @get('/inventories/{id}', {
     responses: {
       '200': {
@@ -107,6 +111,7 @@ export class InventoryController {
     return this.inventoryRepository.findById(id, filter);
   }
 
+  @authenticate('jwt')
   @patch('/inventories/{id}', {
     responses: {
       '204': {
@@ -128,6 +133,7 @@ export class InventoryController {
     await this.inventoryRepository.updateById(id, inventory);
   }
 
+  @authenticate('jwt')
   @put('/inventories/{id}', {
     responses: {
       '204': {
@@ -139,6 +145,7 @@ export class InventoryController {
     await this.inventoryRepository.replaceById(id, inventory);
   }
 
+  @authenticate('jwt')
   @del('/inventories/{id}', {
     responses: {
       '204': {

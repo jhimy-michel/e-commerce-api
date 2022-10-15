@@ -1,11 +1,9 @@
 import {Count, CountSchema, Filter, FilterExcludingWhere, repository, Where} from '@loopback/repository';
 import {post, param, get, getModelSchemaRef, patch, put, del, requestBody, HttpErrors} from '@loopback/rest';
+import {ValidatePassword} from '../auth/utils/validatePassword';
 
 import {User} from '../models';
 import {UserRepository} from '../repositories';
-
-import passwordValidator from 'password-validator';
-import bcrypt from 'bcrypt';
 
 export type UserReq = {
   email: string;
@@ -47,30 +45,7 @@ export class UsersController {
     }
 
     const password = user.password;
-    const schema = new passwordValidator();
-    schema
-      .is()
-      .min(8) // Minimum length 8
-      .is()
-      .max(100) // Maximum length 100
-      .has()
-      .uppercase() // Must have uppercase letters
-      .has()
-      .lowercase() // Must have lowercase letters
-      .has()
-      .digits(2) // Must have at least 2 digits
-      .has()
-      .not()
-      .spaces() // Should not have spaces
-      .is()
-      .not()
-      .oneOf(['Passw0rd', 'Password123']);
-
-    if (!schema.validate(password)) {
-      throw new HttpErrors[422]('Password is too weak');
-    }
-
-    const hashPassword = await bcrypt.hash(password, 10);
+    const hashPassword = await ValidatePassword(password);
 
     const userData = await this.userRepository.create({...user, password: hashPassword});
     return userData;

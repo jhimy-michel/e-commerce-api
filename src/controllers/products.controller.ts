@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {Count, CountSchema, Filter, FilterExcludingWhere, repository, Where} from '@loopback/repository';
 import {post, param, get, getModelSchemaRef, patch, put, del, requestBody} from '@loopback/rest';
 import {Products} from '../models';
@@ -9,6 +10,7 @@ export class ProductsController {
     public productsRepository: ProductsRepository
   ) {}
 
+  @authenticate('jwt')
   @post('/products', {
     responses: {
       '200': {
@@ -33,6 +35,7 @@ export class ProductsController {
     return this.productsRepository.create(products);
   }
 
+  @authenticate('jwt')
   @get('/products/count', {
     responses: {
       '200': {
@@ -45,6 +48,7 @@ export class ProductsController {
     return this.productsRepository.count(where);
   }
 
+  @authenticate('jwt')
   @get('/products', {
     responses: {
       '200': {
@@ -64,6 +68,7 @@ export class ProductsController {
     return this.productsRepository.find(filter);
   }
 
+  @authenticate('jwt')
   @patch('/products', {
     responses: {
       '200': {
@@ -86,6 +91,7 @@ export class ProductsController {
     return this.productsRepository.updateAll(products, where);
   }
 
+  @authenticate('jwt')
   @get('/products/{id}', {
     responses: {
       '200': {
@@ -105,6 +111,7 @@ export class ProductsController {
     return this.productsRepository.findById(id, filter);
   }
 
+  @authenticate('jwt')
   @patch('/products/{id}', {
     responses: {
       '204': {
@@ -126,6 +133,7 @@ export class ProductsController {
     await this.productsRepository.updateById(id, products);
   }
 
+  @authenticate('jwt')
   @put('/products/{id}', {
     responses: {
       '204': {
@@ -137,6 +145,7 @@ export class ProductsController {
     await this.productsRepository.replaceById(id, products);
   }
 
+  @authenticate('jwt')
   @del('/products/{id}', {
     responses: {
       '204': {

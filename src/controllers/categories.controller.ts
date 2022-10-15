@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {Count, CountSchema, Filter, FilterExcludingWhere, repository, Where} from '@loopback/repository';
 import {post, param, get, getModelSchemaRef, patch, put, del, requestBody} from '@loopback/rest';
 import {Category} from '../models';
@@ -9,6 +10,7 @@ export class CategoriesController {
     public categoryRepository: CategoryRepository
   ) {}
 
+  @authenticate('jwt')
   @post('/categories', {
     responses: {
       '200': {
@@ -33,6 +35,7 @@ export class CategoriesController {
     return this.categoryRepository.create(category);
   }
 
+  @authenticate('jwt')
   @get('/categories/count', {
     responses: {
       '200': {
