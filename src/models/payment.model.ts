@@ -9,6 +9,24 @@ export class Payment extends Entity {
   })
   _id?: string;
 
+  @property({
+    type: 'number',
+    required: true
+  })
+  amount: number;
+
+  @property({
+    type: 'string',
+    required: true
+  })
+  state: string;
+
+  @property({
+    type: 'date',
+    default: () => new Date()
+  })
+  timeStamp?: string;
+
   constructor(data?: Partial<Payment>) {
     super(data);
   }

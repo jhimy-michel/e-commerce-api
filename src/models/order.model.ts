@@ -9,6 +9,12 @@ export class Order extends Entity {
   })
   _id?: string;
 
+  @property({
+    type: 'date',
+    required: true
+  })
+  orderDate: string;
+
   constructor(data?: Partial<Order>) {
     super(data);
   }

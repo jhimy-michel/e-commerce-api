@@ -9,9 +9,23 @@ export class Category extends Entity {
   })
   _id?: string;
 
-  // name
-  // createdOn
-  // updatedOn
+  @property({
+    type: 'string',
+    required: true
+  })
+  name: string;
+
+  @property({
+    type: 'date',
+    default: new Date()
+  })
+  createdOn?: string;
+
+  @property({
+    type: 'date',
+    default: new Date()
+  })
+  updatedOn?: string;
 
   constructor(data?: Partial<Category>) {
     super(data);

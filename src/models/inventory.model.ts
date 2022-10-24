@@ -9,6 +9,16 @@ export class Inventory extends Entity {
   })
   _id?: string;
 
+  @property({
+    type: 'string',
+    required: true,
+    id: true,
+    mongodb: {
+      dataType: 'ObjectId'
+    }
+  })
+  productId: string;
+
   constructor(data?: Partial<Inventory>) {
     super(data);
   }
