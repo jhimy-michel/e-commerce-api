@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {Count, CountSchema, Filter, FilterExcludingWhere, repository, Where} from '@loopback/repository';
 import {post, param, get, getModelSchemaRef, patch, put, del, requestBody} from '@loopback/rest';
 import {ShoppingCart} from '../models';
@@ -9,6 +10,7 @@ export class ShoppingCartController {
     public shoppingCartRepository: ShoppingCartRepository
   ) {}
 
+  @authenticate('jwt')
   @post('/shopping-carts', {
     responses: {
       '200': {
@@ -33,6 +35,7 @@ export class ShoppingCartController {
     return this.shoppingCartRepository.create(shoppingCart);
   }
 
+  @authenticate('jwt')
   @get('/shopping-carts/count', {
     responses: {
       '200': {
@@ -45,6 +48,7 @@ export class ShoppingCartController {
     return this.shoppingCartRepository.count(where);
   }
 
+  @authenticate('jwt')
   @get('/shopping-carts', {
     responses: {
       '200': {
@@ -64,6 +68,7 @@ export class ShoppingCartController {
     return this.shoppingCartRepository.find(filter);
   }
 
+  @authenticate('jwt')
   @patch('/shopping-carts', {
     responses: {
       '200': {
@@ -86,6 +91,7 @@ export class ShoppingCartController {
     return this.shoppingCartRepository.updateAll(shoppingCart, where);
   }
 
+  @authenticate('jwt')
   @get('/shopping-carts/{id}', {
     responses: {
       '200': {
@@ -105,6 +111,7 @@ export class ShoppingCartController {
     return this.shoppingCartRepository.findById(id, filter);
   }
 
+  @authenticate('jwt')
   @patch('/shopping-carts/{id}', {
     responses: {
       '204': {
@@ -126,6 +133,7 @@ export class ShoppingCartController {
     await this.shoppingCartRepository.updateById(id, shoppingCart);
   }
 
+  @authenticate('jwt')
   @put('/shopping-carts/{id}', {
     responses: {
       '204': {
@@ -137,6 +145,7 @@ export class ShoppingCartController {
     await this.shoppingCartRepository.replaceById(id, shoppingCart);
   }
 
+  @authenticate('jwt')
   @del('/shopping-carts/{id}', {
     responses: {
       '204': {

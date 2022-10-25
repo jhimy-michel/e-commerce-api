@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {Count, CountSchema, Filter, FilterExcludingWhere, repository, Where} from '@loopback/repository';
 import {post, param, get, getModelSchemaRef, patch, put, del, requestBody} from '@loopback/rest';
 import {Payment} from '../models';
@@ -9,6 +10,7 @@ export class PaymentsController {
     public paymentRepository: PaymentRepository
   ) {}
 
+  @authenticate('jwt')
   @post('/payments', {
     responses: {
       '200': {
@@ -33,6 +35,7 @@ export class PaymentsController {
     return this.paymentRepository.create(payment);
   }
 
+  @authenticate('jwt')
   @get('/payments/count', {
     responses: {
       '200': {
@@ -45,6 +48,7 @@ export class PaymentsController {
     return this.paymentRepository.count(where);
   }
 
+  @authenticate('jwt')
   @get('/payments', {
     responses: {
       '200': {
@@ -64,6 +68,7 @@ export class PaymentsController {
     return this.paymentRepository.find(filter);
   }
 
+  @authenticate('jwt')
   @patch('/payments', {
     responses: {
       '200': {
@@ -86,6 +91,7 @@ export class PaymentsController {
     return this.paymentRepository.updateAll(payment, where);
   }
 
+  @authenticate('jwt')
   @get('/payments/{id}', {
     responses: {
       '200': {
@@ -105,6 +111,7 @@ export class PaymentsController {
     return this.paymentRepository.findById(id, filter);
   }
 
+  @authenticate('jwt')
   @patch('/payments/{id}', {
     responses: {
       '204': {
@@ -137,6 +144,7 @@ export class PaymentsController {
     await this.paymentRepository.replaceById(id, payment);
   }
 
+  @authenticate('jwt')
   @del('/payments/{id}', {
     responses: {
       '204': {
